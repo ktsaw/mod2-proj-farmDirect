@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Auth from './pages/Auth';
+import NewOrder from './pages/NewOrder';
+import OrderHistory from './pages/OrderHistory';
+import NavBar from './components/NavBar';
+//import Test from './pages/Test'
+import { Routes, Route } from 'react-router-dom'
+import { getUser} from './utilities/users-service';
 
 function App() {
+
+  const [user, setUser] = useState(getUser())
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        user ?
+          <>
+            <NavBar setUser={setUser} user={user}/>
+
+            <Routes>
+              <Route path="/orders/new" element={<NewOrder />} />
+              <Route path="/orders" element={<OrderHistory />} />
+              
+            </Routes>
+          </>
+          :
+          <Auth setUser={setUser}/>
+      }
     </div>
   );
 }
