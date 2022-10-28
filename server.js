@@ -6,6 +6,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const cors = require('cors');  //use this when error on the console indicates localhost:3000 has been blocked by CORS policy.
 require('dotenv').config();
 require('./config/database');
 
@@ -32,6 +33,7 @@ app.use(express.json()); // this turns the body of the request into JSON so that
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico'))); // this uses the favicon package to make sure the react site is showing the right favicon
 app.use(express.static(path.join(__dirname, 'build'))); // this points the react app to the server's "build" folder so it knows where to get the frontend code from.
+app.use(cors());  //CORS was required on line 9 above
 
 // ----------
 // END OF MIDDLEWARE
