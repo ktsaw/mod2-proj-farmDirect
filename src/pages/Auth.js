@@ -2,16 +2,20 @@ import SignUpForm from "../components/SignUpForm"
 
 import LogInForm from "../components/LogInForm"
 
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
 export default function Auth (props) {
   return (
     <main>
-      <h1>Farm Direct</h1>
-      <h2>New Customer</h2>
-      <h3>Sign Up</h3>
+      <Header />
+      <h5>New Customer: Sign Up</h5>
       <SignUpForm setUser={props.setUser}/>
-      <h3>Returning Customer</h3>
-      <h4>Log In</h4>
+      <h5>Returning Customer: Log In</h5>
+
       <LogInForm setUser={props.setUser} />
+
+      <Footer />
     </main>
   )
 }
